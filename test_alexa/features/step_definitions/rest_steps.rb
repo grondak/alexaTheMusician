@@ -10,6 +10,7 @@ end
 Then /^response should be "([^"]*)"$/ do |status|
     @response.code.should == status.to_i
 end
+
 Then /^the JSON response should be an array with (\d+) "([^"]*)" elements$/ do |num, name|
                                                             page = JSON.parse(@response)
                                                             page.map { |d| d[name] }.length.should == num.to_i
