@@ -1,4 +1,3 @@
-@racks
 Feature: Scales
   As a musician
   I want a scale
