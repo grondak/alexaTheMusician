@@ -6,7 +6,7 @@ var music = require('./music');
 (function () {
     "use strict";
 
-    var logging = true,
+    var logging = false,
         server = http.createServer(function (req, res) {
 
             var pathname = url.parse(req.url).pathname,
