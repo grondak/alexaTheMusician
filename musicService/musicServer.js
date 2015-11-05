@@ -6,12 +6,15 @@ var music = require('./music');
 (function () {
     "use strict";
 
-    var logging = false,
+    var logging = true,
         server = http.createServer(function (req, res) {
 
             var pathname = url.parse(req.url).pathname,
                 scaleName = url.parse(req.url, true).query.name,
+                notes = null;
+            if (!(scaleName === null)) {
                 notes = music.getScale(scaleName);
+            }
             if (logging) {
                 console.log('Got a request ' + pathname + ' parms: ' + url.parse(req.url).search);
             }

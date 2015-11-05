@@ -16,9 +16,9 @@
             return false;
         });
         if (scaleEntity === undefined) {
-            return undefined;
+            return { 'notes': undefined };
         }
-        return scaleEntity.notes;
+        return { 'notes': scaleEntity.notes};
     }
     exports.scaleData = scaleData;
     exports.getScale = getScale;

@@ -3,6 +3,6 @@ Given(/^the system knows about the following scales$/) do |music|
 end
 
 Then(/^the JSON response should be "([^"]*)"$/) do |notes|
-  page = JSON.parse(@response)
-  expect(page[0]["notes"]).to eq(notes)
+  answer = JSON.parse(@response)
+  expect(answer["notes"]).to eq(notes)
 end
