@@ -5,7 +5,7 @@ var exec = require('child_process').exec;
 
 // npm install gulp-jslint
 gulp.task('jslint', function() {
-	return gulp.src(['musicServer.js'])
+	return gulp.src(['music.js', 'musicServer.js'])
  
 	    // pass your directives 
 	    // as an object 
@@ -58,13 +58,13 @@ gulp.task('jslint', function() {
     });
 
 // npm install --save-dev gulp-mocha    
-gulp.task('test', function () {
+gulp.task('test', ['jslint'], function () {
     return gulp.src('../testMusicService/test.js', {read: false})
         // gulp-mocha needs filepaths so you can't have any plugins before it 
         .pipe(mocha({reporter: 'nyan'}));
 });
 
-gulp.task('startServer', function (cb) {
+gulp.task('startServer', ['test'], function (cb) {
   exec('node musicServer.js 8080', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
