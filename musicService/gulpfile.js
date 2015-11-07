@@ -1,11 +1,12 @@
-var gulp = require('gulp');
-var jslint = require('gulp-jslint');
-var mocha = require('gulp-mocha');
-var exec = require('child_process').exec;
+var gulp = require('gulp'),
+    jslint = require('gulp-jslint'),
+    mocha = require('gulp-mocha'),
+    exec = require('child_process').exec,
+    files = ['musicServer.js'];
 
 // npm install gulp-jslint
 gulp.task('jslint', function() {
-	return gulp.src(['music.js', 'musicServer.js'])
+	return gulp.src(files)
  
 	    // pass your directives 
 	    // as an object 
@@ -64,7 +65,7 @@ gulp.task('test', ['jslint'], function () {
         .pipe(mocha({reporter: 'nyan'}));
 });
 
-gulp.task('startServer', ['test'], function (cb) {
+gulp.task('startServer', ['jslint'], function (cb) {
   exec('node musicServer.js 8080', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -73,4 +74,4 @@ gulp.task('startServer', ['test'], function (cb) {
 })
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['jslint', 'test', 'startServer']);
+gulp.task('default', ['jslint', 'startServer']);

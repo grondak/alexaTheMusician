@@ -2,7 +2,7 @@
 var http = require('http');
 var map = require('through2-map');
 var url = require('url');
-var music = require('./music');
+var bassclef = require('bassclef');
 (function () {
     "use strict";
 
@@ -13,7 +13,7 @@ var music = require('./music');
                 scaleName = url.parse(req.url, true).query.name,
                 notes = null;
             if (!(scaleName === null)) {
-                notes = music.getScale(scaleName);
+                notes = bassclef.getScale(scaleName);
             }
             if (logging) {
                 console.log('Got a request ' + pathname + ' parms: ' + url.parse(req.url).search);
@@ -21,7 +21,7 @@ var music = require('./music');
             res.writeHead(200, { 'Content-Type': 'application/json' });
             if (req.method === 'GET') {
                 if (pathname === '/scales') {
-                    return res.end(JSON.stringify(music.scaleData));
+                    return res.end(JSON.stringify(bassclef.scaleData));
                 }
                 if (pathname === '/scale/') {
                     if (logging) {
